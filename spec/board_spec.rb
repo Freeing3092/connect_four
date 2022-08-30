@@ -12,7 +12,6 @@ RSpec.describe Board do
   end
   
   it 'should have a hash keys from A-G with empty array values' do
-    # require 'pry';binding.pry
     expect(board.game_board['A']).to eq([])
     expect(board.game_board['B']).to eq([])
     expect(board.game_board['C']).to eq([])
@@ -28,7 +27,15 @@ RSpec.describe Board do
     expect(board.game_board['Z']).to eq nil
   end
 
-
+  it 'should have an attribute for a inverted hash of game_board' do
+    board.invert_board
+    expect(board.horizontal_board[1]).to eq([nil, nil, nil, nil, nil, nil, nil])
+    expect(board.horizontal_board[2]).to eq([nil, nil, nil, nil, nil, nil, nil])
+    expect(board.horizontal_board[3]).to eq([nil, nil, nil, nil, nil, nil, nil])
+    expect(board.horizontal_board[4]).to eq([nil, nil, nil, nil, nil, nil, nil])
+    expect(board.horizontal_board[5]).to eq([nil, nil, nil, nil, nil, nil, nil])
+    expect(board.horizontal_board[6]).to eq([nil, nil, nil, nil, nil, nil, nil])
+  end
 
 
 end
