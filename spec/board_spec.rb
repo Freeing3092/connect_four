@@ -28,13 +28,21 @@ RSpec.describe Board do
   end
 
   it 'should have an attribute for a inverted hash of game_board' do
+    board.game_board['B'].push('X')
+    board.game_board['B'].push('O')
+    board.game_board['C'].push('X')
+    board.game_board['D'].push('O')
     board.invert_board
-    expect(board.horizontal_board[1]).to eq([nil, nil, nil, nil, nil, nil, nil])
+    # require "pry"; binding.pry
+    
+    expect(board.horizontal_board[0]).to eq([nil, 'X', 'X', 'O', nil, nil, nil])
+    expect(board.horizontal_board[1]).to eq([nil, 'O', nil, nil, nil, nil, nil])
     expect(board.horizontal_board[2]).to eq([nil, nil, nil, nil, nil, nil, nil])
     expect(board.horizontal_board[3]).to eq([nil, nil, nil, nil, nil, nil, nil])
     expect(board.horizontal_board[4]).to eq([nil, nil, nil, nil, nil, nil, nil])
     expect(board.horizontal_board[5]).to eq([nil, nil, nil, nil, nil, nil, nil])
-    expect(board.horizontal_board[6]).to eq([nil, nil, nil, nil, nil, nil, nil])
+    print "\n"
+    board.print_board
   end
 
 
