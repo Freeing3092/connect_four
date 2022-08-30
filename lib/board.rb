@@ -32,6 +32,7 @@ class Board
     @horizontal_board.values.each do |row|
       subbed_row = []
       row.each do |slot|
+        # require 'pry';binding.pry
         if slot == nil
           subbed_row << '.'
         else
@@ -41,4 +42,11 @@ class Board
       puts subbed_row.join
     end
   end
+
+
+  def welcome_message
+    puts "Welcome to CONNECT FOUR \n"
+  end
+
+
 end
