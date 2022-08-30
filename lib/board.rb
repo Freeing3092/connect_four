@@ -16,7 +16,7 @@ class Board
   end
 
   def invert_board
-    column_index = 6
+    column_index = 5
     6.times do
       row = []
       game_board.values.each do |column|
