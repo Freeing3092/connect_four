@@ -26,4 +26,19 @@ class Board
       column_index -= 1
     end
   end
+  
+  def print_board
+    puts game_board.keys.join
+    @horizontal_board.values.each do |row|
+      subbed_row = []
+      row.each do |slot|
+        if slot == nil
+          subbed_row << '.'
+        else
+          subbed_row << slot
+        end
+      end
+      puts subbed_row.join
+    end
+  end
 end
