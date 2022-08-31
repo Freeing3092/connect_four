@@ -18,5 +18,14 @@ RSpec.describe Turn do
     expect(game.board.horizontal_board[0].join).to eq('O')
   end
 
-
+  it "has a method to check if a column is full" do
+    board.game_board['A'].push(computer.chip)
+    board.game_board['A'].push(computer.chip)
+    board.game_board['A'].push(computer.chip)
+    board.game_board['A'].push(computer.chip)
+    board.game_board['A'].push(computer.chip)
+    expect(game.column_full?('A')).to eq(false)
+    board.game_board['A'].push(computer.chip)
+    expect(game.column_full?('A')).to eq(true)
+  end
 end
