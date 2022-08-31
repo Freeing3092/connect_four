@@ -28,4 +28,18 @@ RSpec.describe Turn do
     board.game_board['A'].push(computer.chip)
     expect(game.column_full?('A')).to eq(true)
   end
+  
+  it "has a method to check if all columns are full" do
+    expect(game.draw?).to eq(false)
+    6.times do
+      board.game_board['A'].push(computer.chip)
+      board.game_board['B'].push(computer.chip)
+      board.game_board['C'].push(computer.chip)
+      board.game_board['D'].push(computer.chip)
+      board.game_board['E'].push(computer.chip)
+      board.game_board['F'].push(computer.chip)
+      board.game_board['G'].push(computer.chip)
+    end
+    expect(game.draw?).to eq(true)
+  end
 end
