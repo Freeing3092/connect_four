@@ -6,6 +6,15 @@ class Turn
     @player2 = player2
   end
 
+  def valid_input_length(move)
+    move.length == 1
+  end
+  
+  def valid_input_character(letter)
+    ((letter.is_a?(Integer) == false) && (@board.game_board.keys).any?(letter.upcase))
+    #if false, return a message to player...input valid letter
+  end
+
 # Method to have the computer select a random (and not full) column
 # and print the board.
 
