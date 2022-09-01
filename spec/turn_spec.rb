@@ -8,14 +8,14 @@ RSpec.describe Turn do
   let(:board) {Board.new}
   let(:turn) { Turn.new(board, player, computer)}
 
-  xit 'should be an instance of a Turn class'do
+  it 'should be an instance of a Turn class'do
     expect(turn).to be_a Turn
   end
   
   context 'tests player actions' do
     it 'accepts one character that matches the column keys and upcases it' do
-      move = ""
-      expect(turn.valid_input_character?(move)).to eq false
+     
+    
       move = " "
       expect(turn.valid_input_character?(move)).to eq false
       move = "."
@@ -42,27 +42,20 @@ RSpec.describe Turn do
       turn.player1_move('e')
       # require 'pry';binding.pry
       expect(board.game_board['E'].count).to eq(6)
-      turn.player1_move('e')
-      # require 'pry';binding.pry
-      # expect(turn.column_full?('E')).to eq(true)
-
-      # expect(column_full?(move)).to eq false
-      # player1_move
-
-
-
+      turn.player1_move('a')
+      expect(turn.column_full?('A')).to eq(false)
     end
 
 
   end 
 
-  xit "has a method for the computer move" do
-    game.computer_move
+  it "has a method for the computer move" do
+    turn.computer_move
     board.invert_board
     expect(turn.board.horizontal_board[0].join).to eq('O')
   end
 
-  xit "has a method to check if a column is full" do
+  it "has a method to check if a column is full" do
     board.game_board['A'].push(computer.chip)
     board.game_board['A'].push(computer.chip)
     board.game_board['A'].push(computer.chip)
@@ -73,8 +66,8 @@ RSpec.describe Turn do
     expect(turn.column_full?('A')).to eq(true)
   end
   
-  xit "has a method to check if all columns are full" do
-    expect(game.draw?).to eq(false)
+  it "has a method to check if all columns are full" do
+    expect(turn.draw?).to eq(false)
     6.times do
       board.game_board['A'].push(computer.chip)
       board.game_board['B'].push(computer.chip)
@@ -84,6 +77,6 @@ RSpec.describe Turn do
       board.game_board['F'].push(computer.chip)
       board.game_board['G'].push(computer.chip)
     end
-    expect(game.draw?).to eq(true)
+    expect(turn.draw?).to eq(true)
   end
 end
