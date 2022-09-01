@@ -13,25 +13,28 @@ class Turn
       #****if false, return a message to player...input valid move * ******
   end
   
+    # this method calls for the player to make a move, evaluates the move, 
+    #and inputs valid moves onto the board
+    
   def player1_move
     if draw? == true #end of method for immediate response to conidtion
       return "The game is a draw!"
     end
-    
-    move =  gets.chomp.upcase!
+
+    move =  gets.chomp.upcase
     while valid_input_character?(move) == false
     puts "That is an invalid input! Please select an open column between A-G."
-    move =  gets.chomp.upcase!
+    move =  gets.chomp.upcase
     end
-    while column_full?(move) == true ||  valid_input_character?(move) == false
+    while column_full?(move) == true #?????||  valid_input_character?(move) == true
       puts "That column is full! Please select another column."
-      move =  gets.chomp.upcase! # runner file... run prun
+      move =  gets.chomp.upcase # runner file... run prun
     end
-    record_move_print_board(move, @player2) 
+    record_move_print_board(move, @player1) 
   end
 
-# Method to have the computer select a random (and not full) column
-# and print the board.
+  # Method to have the computer select a random (and not full) column
+  # and print the board.
 
   def computer_move
     move = @board.game_board.keys.sample
@@ -66,6 +69,4 @@ class Turn
     @board.invert_board
     @board.print_board
   end
-
 end
-

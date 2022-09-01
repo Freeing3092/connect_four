@@ -12,7 +12,6 @@ RSpec.describe Turn do
     expect(turn).to be_a Turn
   end
   
-  
   it 'accepts one character that matches the column keys and upcases it' do
     move = " "
     expect(turn.valid_input_character?(move)).to eq false
