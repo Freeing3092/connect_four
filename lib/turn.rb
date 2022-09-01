@@ -5,14 +5,29 @@ class Turn
     @player1 = player1
     @player2 = player2
   end
-
-  def valid_input_length(move)
-    move.length == 1
-  end
   
-  def valid_input_character(letter)
-    ((letter.is_a?(Integer) == false) && (@board.game_board.keys).any?(letter.upcase))
-    #if false, return a message to player...input valid letter
+  #Method evaluates and upcases valid input; 
+
+  def valid_input_character?(move)
+    ((move.is_a?(Integer) == false) && ((@board.game_board).has_key?(move.upcase)))
+      #****if false, return a message to player...input valid move * ******
+  end
+
+  def player1_move(move)
+    move.upcase!
+    require 'pry';binding.pry
+    if draw? == true 
+      return "The game is a draw!"
+    end
+    
+    while column_full?(move) == true ||  valid_input_character?(move) == false
+      puts "Invalid move!"
+      move = gets.chomp.upcase
+    
+      valid_input_character?(move) == false
+       
+      end
+    record_move_print_board(move, @player2) 
   end
 
 # Method to have the computer select a random (and not full) column
@@ -27,13 +42,12 @@ class Turn
       puts "Invalid move!"
       move = @board.game_board.keys.sample
     end
-    @board.game_board[move].push(player2.chip)
-    @board.invert_board
-    @board.print_board
+    record_move_print_board(move, @player2)
   end
   
   # Method to check if a column is full.
   
+
   def column_full?(move)
     board.game_board[move].count == 6
   end
@@ -44,4 +58,12 @@ class Turn
     board.game_board.values.flatten.count >= 42
   end
   
+  # Method pushes the player's chip and prints the board
+  
+  def record_move_print_board(move, player) 
+    @board.game_board[move].push(player.chip)
+    @board.invert_board
+    @board.print_board
+  end
+
 end
