@@ -12,42 +12,25 @@ RSpec.describe Turn do
     expect(turn).to be_a Turn
   end
   
-  context 'tests player actions' do
-    it 'accepts one character that matches the column keys and upcases it' do
-     
-    
-      move = " "
-      expect(turn.valid_input_character?(move)).to eq false
-      move = "."
-      expect(turn.valid_input_character?(move)).to eq false
-      move = 5
-      expect(turn.valid_input_character?(move)).to eq false
-      move = "á"
-      expect(turn.valid_input_character?(move)).to eq false
-      move = "BB"
-      expect(turn.valid_input_character?(move)).to eq false
-      move = "C?"
-      expect(turn.valid_input_character?(move)).to eq false
-      move = "g"
-      expect(turn.valid_input_character?(move)).to eq true
-      move = 'D'
-      expect(turn.valid_input_character?(move)).to eq true
-    end
-
-    it 'checks for a draw scenario and if the column is full before player move'do
-      expect(turn.draw?).to eq false
-      5.times do
-        board.game_board['E'].push(computer.chip)
-      end
-      turn.player1_move('e')
-      # require 'pry';binding.pry
-      expect(board.game_board['E'].count).to eq(6)
-      turn.player1_move('a')
-      expect(turn.column_full?('A')).to eq(false)
-    end
-
-
-  end 
+  
+  it 'accepts one character that matches the column keys and upcases it' do
+    move = " "
+    expect(turn.valid_input_character?(move)).to eq false
+    move = "."
+    expect(turn.valid_input_character?(move)).to eq false
+    move = 5
+    expect(turn.valid_input_character?(move)).to eq false
+    move = "á"
+    expect(turn.valid_input_character?(move)).to eq false
+    move = "BB"
+    expect(turn.valid_input_character?(move)).to eq false
+    move = "C?"
+    expect(turn.valid_input_character?(move)).to eq false
+    move = "g"
+    expect(turn.valid_input_character?(move)).to eq true
+    move = 'D'
+    expect(turn.valid_input_character?(move)).to eq true
+  end
 
   it "has a method for the computer move" do
     turn.computer_move
