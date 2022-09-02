@@ -45,5 +45,7 @@ RSpec.describe Board do
     board.print_board
   end
 
-
+  it'should put a welcome message' do
+    expect { board.welcome_message }.to output("Welcome to CONNECT FOUR!\n").to_stdout
+  end
 end

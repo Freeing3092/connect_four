@@ -32,6 +32,7 @@ class Game
   end
   
   def play
+    start
     until win?(board.game_board.values, @player1) || win?(board.game_board.values, @player2) || win?(board.horizontal_board.values, @player1) || win?(board.horizontal_board.values, @player2) || turn.draw?
       @turn.player1_move
       @turn.computer_move
@@ -44,6 +45,69 @@ class Game
       puts "*~*~* #{winner.name} has won the game! *~*~*"
     elsif @turn.draw?
       puts "----- Tie game -----"
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def start
+    @board.welcome_message
+
+    puts "Enter p to play. Enter q to quit.\n"
+    user_input = gets.chomp
+
+    if (user_input.is_a?(Integer) == false)
+      while (user_input.upcase != "P" || user_input.upcase != "Q")
+      puts "Invalid input.\nEnter p to play. Enter q to quit."
+      user_input = gets.chomp.upcase 
+      end
+
+      if user_input == "Q" 
+        puts "Thank you for checking out CONNECT FOUR!"
+      end
+
+    else  user_input == "P"
+      @board.invert_board
+      @board.print_board
     end
   end
 end
