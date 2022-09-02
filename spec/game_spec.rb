@@ -15,4 +15,12 @@ RSpec.describe Game do
     expect(game.player2.name).to eq("Hal")
     expect(game.board).to be_a Board
   end
+  
+  it "has a method to check for win conditions" do
+    expect(game.win?).to eq(false)
+    4.times do
+      game.board.game_board['B'].push(game.player1.chip)
+    end
+    expect(game.win?).to eq(true)
+  end
 end
