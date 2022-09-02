@@ -11,11 +11,10 @@ class Game
     @player2 = Player.new('Hal', 'O')
   end
   
-  
-  def win?(player)
-    board.game_board.values.each do |row|
+  def win?(board_orientation, player)
+    board_orientation.each do |vector|
       player_consecutive_tokens = 0
-      row.each do |slot|
+      vector.each do |slot|
         if slot == player.chip
           player_consecutive_tokens += 1
         else
