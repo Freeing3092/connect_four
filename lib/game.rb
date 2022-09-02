@@ -32,7 +32,6 @@ class Game
   end
   
   def play
-    start
     until win?(board.game_board.values, @player1) || win?(board.game_board.values, @player2) || win?(board.horizontal_board.values, @player1) || win?(board.horizontal_board.values, @player2) || turn.draw?
       @turn.player1_move
       @turn.computer_move
@@ -95,19 +94,22 @@ class Game
     puts "Enter p to play. Enter q to quit.\n"
     user_input = gets.chomp
 
+    # require 'pry';binding.pry
     if (user_input.is_a?(Integer) == false)
-      while (user_input.upcase != "P" || user_input.upcase != "Q")
-      puts "Invalid input.\nEnter p to play. Enter q to quit."
-      user_input = gets.chomp.upcase 
+      while (user_input.upcase != "Q") && (user_input.upcase != "P")
+        puts "Invalid input.\nEnter p to play. Enter q to quit."
+        user_input = gets.chomp 
       end
 
-      if user_input == "Q" 
-        puts "Thank you for checking out CONNECT FOUR!"
+      if user_input.upcase == "Q" 
+        return puts "Thank you for checking out CONNECT FOUR!"
       end
 
-    else  user_input == "P"
-      @board.invert_board
-      @board.print_board
+    else  user_input.upcase == "P"
+     puts "Your chips will be X. Connect Four!"
     end
+    @board.invert_board
+    @board.print_board
+    play
   end
 end
