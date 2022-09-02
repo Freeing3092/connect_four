@@ -11,21 +11,17 @@ class Game
     @player2 = Player.new('Hal', 'O')
   end
   
-  def win?
+  
+  def win?(player)
     board.game_board.values.each do |row|
       player_consecutive_tokens = 0
-      computer_consecutive_tokens = 0
       row.each do |slot|
-        if slot == 'X'
-          computer_consecutive_tokens = 0
+        if slot == player.chip
           player_consecutive_tokens += 1
-        elsif slot == 'O'
+        else
           player_consecutive_tokens = 0
-          computer_consecutive_tokens += 1
         end
-        if player_consecutive_tokens >= 4 || computer_consecutive_tokens >= 4
-          return true
-        end
+        return true if player_consecutive_tokens >= 4
       end
     end
     return false
