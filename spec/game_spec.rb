@@ -36,4 +36,35 @@ RSpec.describe Game do
     
     expect(game.win?(game.board.horizontal_board.values, game.player2)).to eq(true)
   end
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end

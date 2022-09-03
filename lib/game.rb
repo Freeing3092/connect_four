@@ -46,4 +46,70 @@ class Game
       puts "----- Tie game -----"
     end
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def start
+    @board.welcome_message
+
+    puts "Enter p to play. Enter q to quit.\n"
+    user_input = gets.chomp
+
+    # require 'pry';binding.pry
+    if (user_input.is_a?(Integer) == false)
+      while (user_input.upcase != "Q") && (user_input.upcase != "P")
+        puts "Invalid input.\nEnter p to play. Enter q to quit."
+        user_input = gets.chomp 
+      end
+
+      if user_input.upcase == "Q" 
+        return puts "Thank you for checking out CONNECT FOUR!"
+      end
+
+    else  user_input.upcase == "P"
+     puts "Your chips will be X. Connect Four!"
+    end
+    @board.invert_board
+    @board.print_board
+    play
+  end
 end

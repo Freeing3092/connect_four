@@ -100,10 +100,7 @@ class Board
     end
   end
 
-
   def welcome_message
-    puts "Welcome to CONNECT FOUR \n"
+    puts "Welcome to CONNECT FOUR!\n"
   end
-
-
 end
