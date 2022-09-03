@@ -1,5 +1,5 @@
 class Board
-  attr_reader :game_board, #may need to allow other classes to change later
+  attr_reader :game_board,
               :horizontal_board,
               :diagonal_board
   def initialize()
@@ -28,23 +28,7 @@ class Board
     end
   end
   
-  # def invert_board_diagonal
-  #   n = 0
-  #   i = 0
-  #   @game_board.values.each do |column|
-  #     diagonal = []
-  #     @horizontal_board.values.reverse.each do |row|
-  #       diagonal << row[i]
-  #       i += 1
-  #     end
-  #     @diagonal_board[n] = diagonal
-  #     n += 1
-  #     i = n
-  #   end
-  # end
-  
   def invert_board_diagonal
-    # require "pry"; binding.pry
     n = 0
     i = 0
     7.times do
@@ -99,7 +83,6 @@ class Board
       k -= 1
       i = k
     end
-    require "pry"; binding.pry
   end
   
   def print_board

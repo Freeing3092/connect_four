@@ -33,7 +33,6 @@ RSpec.describe Board do
     board.game_board['C'].push('X')
     board.game_board['D'].push('O')
     board.invert_board
-    # require "pry"; binding.pry
     
     expect(board.horizontal_board[0]).to eq([nil, 'X', 'X', 'O', nil, nil, nil])
     expect(board.horizontal_board[1]).to eq([nil, 'O', nil, nil, nil, nil, nil])
