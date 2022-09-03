@@ -61,7 +61,7 @@ class Board
     5.times do
       diagonal = []
       @horizontal_board.values.reverse.each do |row|
-        diagonal << row[i]
+        diagonal << row[i] if i >= 0
         i -= 1
       end
       @diagonal_board[n] = diagonal
@@ -75,7 +75,7 @@ class Board
     5.times do
       diagonal = []
       @horizontal_board.values.each do |row|
-        diagonal << row[i]
+        diagonal << row[i] if i >= 0
         i -= 1
       end
       @diagonal_board[n] = diagonal

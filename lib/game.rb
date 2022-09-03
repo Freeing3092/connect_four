@@ -32,11 +32,19 @@ class Game
   end
   
   def play
-    until win?(board.game_board.values, @player1) || win?(board.game_board.values, @player2) || win?(board.horizontal_board.values, @player1) || win?(board.horizontal_board.values, @player2) || turn.draw? || win?(board.diagonal_board.values, @player1) || win?(board.diagonal_board.values, @player2)
+    until game_over?(@player2)
       @turn.player1_move
+      break if game_over?(@player1)
       @turn.computer_move
     end
     end_game
+  end
+  
+  def game_over?(player)
+    win?(board.game_board.values, player) || 
+    win?(board.horizontal_board.values, player) || 
+    win?(board.diagonal_board.values, player) || 
+    turn.draw?
   end
   
   def end_game
