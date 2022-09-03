@@ -34,6 +34,7 @@ class Game
   def play
     until win?(board.game_board.values, @player1) || win?(board.game_board.values, @player2) || win?(board.horizontal_board.values, @player1) || win?(board.horizontal_board.values, @player2) || turn.draw? || win?(board.diagonal_board.values, @player1) || win?(board.diagonal_board.values, @player2)
       @turn.player1_move
+      break if win?(board.game_board.values, @player1) || win?(board.horizontal_board.values, @player1) || win?(board.diagonal_board.values, @player1)
       @turn.computer_move
     end
     end_game
