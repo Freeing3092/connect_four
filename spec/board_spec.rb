@@ -45,5 +45,31 @@ RSpec.describe Board do
     board.print_board
   end
 
-
+  it 'should have an attribute for a diagonal board' do
+    board.game_board['A'].push('X')
+    board.game_board['A'].push('O')
+    board.game_board['B'].push('X')
+    board.game_board['B'].push('O')
+    board.game_board['C'].push('X')
+    board.game_board['D'].push('O')
+    board.game_board['D'].push('X')
+    board.game_board['D'].push('O')
+    board.game_board['C'].push('X')
+    board.game_board['C'].push('O')
+    board.game_board['E'].push('X')
+    board.game_board['E'].push('O')
+    board.game_board['E'].push('X')
+    board.game_board['E'].push('O')
+    
+    board.invert_board
+    board.invert_board_diagonal
+    expect(board.diagonal_board[0]).to eq(['X', 'O', 'O', nil, nil, nil])
+    expect(board.diagonal_board[7]).to eq([nil, nil, nil, 'O', 'O', nil])
+    expect(board.diagonal_board[8]).to eq([nil, nil, nil, 'X', nil, nil])
+    expect(board.diagonal_board[14]).to eq(['X', 'X', 'O', nil, nil, nil])
+    expect(board.diagonal_board[19]).to eq([nil, nil, nil, nil, 'O', nil])
+    
+    print "\n"
+    board.print_board
+  end
 end

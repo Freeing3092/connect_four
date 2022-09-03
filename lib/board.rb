@@ -1,6 +1,7 @@
 class Board
   attr_reader :game_board, #may need to allow other classes to change later
-              :horizontal_board
+              :horizontal_board,
+              :diagonal_board
   def initialize()
     @game_board = { 
     "A" => [],
@@ -12,7 +13,7 @@ class Board
     "G" => []
   }
     @horizontal_board = {}
-    
+    @diagonal_board = {}
   end
 
   def invert_board
@@ -27,19 +28,92 @@ class Board
     end
   end
   
+  # def invert_board_diagonal
+  #   n = 0
+  #   i = 0
+  #   @game_board.values.each do |column|
+  #     diagonal = []
+  #     @horizontal_board.values.reverse.each do |row|
+  #       diagonal << row[i]
+  #       i += 1
+  #     end
+  #     @diagonal_board[n] = diagonal
+  #     n += 1
+  #     i = n
+  #   end
+  # end
+  
+  def invert_board_diagonal
+    # require "pry"; binding.pry
+    n = 0
+    i = 0
+    7.times do
+      diagonal = []
+      @horizontal_board.values.reverse.each do |row|
+        diagonal << row[i]
+        i += 1
+      end
+      @diagonal_board[n] = diagonal
+      n += 1
+      i = n
+    end
+    
+    k = 0
+    i = 0
+    7.times do
+      diagonal = []
+      @horizontal_board.values.each do |row|
+        diagonal << row[i]
+        i += 1
+      end
+      @diagonal_board[n] = diagonal
+      n += 1
+      k += 1
+      i = k
+    end
+    
+    k = 4
+    i = 4
+    5.times do
+      diagonal = []
+      @horizontal_board.values.reverse.each do |row|
+        diagonal << row[i]
+        i -= 1
+      end
+      @diagonal_board[n] = diagonal
+      n += 1
+      k -= 1
+      i = k
+    end
+    
+    k = 4
+    i = 4
+    5.times do
+      diagonal = []
+      @horizontal_board.values.each do |row|
+        diagonal << row[i]
+        i -= 1
+      end
+      @diagonal_board[n] = diagonal
+      n += 1
+      k -= 1
+      i = k
+    end
+    require "pry"; binding.pry
+  end
+  
   def print_board
-    puts game_board.keys.join
+    puts game_board.keys.join(' ')
     @horizontal_board.values.each do |row|
       subbed_row = []
       row.each do |slot|
-        # require 'pry';binding.pry
         if slot == nil
           subbed_row << '.'
         else
           subbed_row << slot
         end
       end
-      puts subbed_row.join
+      puts subbed_row.join(' ')
     end
   end
 
