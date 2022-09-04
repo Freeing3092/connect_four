@@ -65,8 +65,8 @@ RSpec.describe Board do
     expect(board.diagonal_board[0]).to eq(['X', 'O', 'O', nil, nil, nil])
     expect(board.diagonal_board[7]).to eq([nil, nil, nil, 'O', 'O', nil])
     expect(board.diagonal_board[8]).to eq([nil, nil, nil, 'X', nil, nil])
-    expect(board.diagonal_board[14]).to eq(['X', 'X', 'O', nil, nil, nil])
-    expect(board.diagonal_board[19]).to eq([nil, nil, nil, nil, 'O', nil])
+    expect(board.diagonal_board[14]).to eq(['X', 'X', 'O', nil, nil])
+    expect(board.diagonal_board[19]).to eq([nil, nil, nil, nil, 'O'])
     
     print "\n"
     board.print_board
