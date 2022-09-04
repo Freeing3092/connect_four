@@ -9,11 +9,7 @@ class Turn
   #Method takes in a player1 move and runs it through the assessment steps
 
   def player1_move
-    if draw?
-      return "The game is a draw!"
-    end
-
-    move =  gets.chomp.upcase
+    move = gets.chomp.upcase
     is_move_invalid?(move)
   end
 
@@ -21,10 +17,6 @@ class Turn
   # and print the board.
 
   def computer_move
-    if draw?
-      return "The game is a draw!"
-    end
-
     move = @board.game_board.keys.sample
     while column_full?(move)
       move = @board.game_board.keys.sample
@@ -34,9 +26,7 @@ class Turn
   
   # Method to check if a column is full.
   
-
   def column_full?(move)
-    # require 'pry';binding.pry
     board.game_board[move].count == 6
   end
   
@@ -65,7 +55,7 @@ class Turn
     #if input is invalid 
     while (valid_input_character?(move) == false) 
       puts "That is an invalid input! Please select an open column between A-G."
-      move =  gets.chomp.upcase
+      move = gets.chomp.upcase
     end
     # if input valid
     if (valid_input_character?(move)  == true ) 
@@ -74,7 +64,7 @@ class Turn
        #if input is valid check for full column, recheck input then column status; if either is true loop
         while (valid_input_character?(move) == false ) || (column_full?(move) == true)
           puts "That is an invalid input! Please select an open column between A-G."
-          move =  gets.chomp.upcase
+          move = gets.chomp.upcase
       end
     end
     record_move_print_board(move, @player1)
