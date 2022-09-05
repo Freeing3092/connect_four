@@ -61,15 +61,16 @@ RSpec.describe Board do
     board.game_board['E'].push('O')
     
     board.invert_board
-    board.invert_board_diagonal
-    expect(board.diagonal_board[0]).to eq(['X', 'O', 'O', nil, nil, nil])
-    expect(board.diagonal_board[7]).to eq([nil, nil, nil, 'O', 'O', nil])
-    expect(board.diagonal_board[8]).to eq([nil, nil, nil, 'X', nil, nil])
-    expect(board.diagonal_board[14]).to eq(['X', 'X', 'O', nil, nil])
-    expect(board.diagonal_board[19]).to eq([nil, nil, nil, nil, 'O'])
+    board.import_diagonal_board
     
     print "\n"
     board.print_board
+    
+    expect(board.diagonal_board[0]).to eq([nil, nil, nil, 'O', 'O', nil])
+    expect(board.diagonal_board[3]).to eq([nil, nil, nil, 'X', nil, nil])
+    expect(board.diagonal_board[6]).to eq(['X', 'O', 'O', nil, nil, nil])
+    expect(board.diagonal_board[9]).to eq(['X', 'X', 'O', 'O', nil, nil])
+    expect(board.diagonal_board[11]).to eq(['O', 'O', nil, nil])
   end
   
   it'should put a welcome message' do

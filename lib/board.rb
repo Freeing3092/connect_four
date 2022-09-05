@@ -13,7 +13,7 @@ class Board
     "G" => []
   }
     @horizontal_board = {}
-    @diagonal_board = {}
+    @diagonal_board = []
   end
 
   def invert_board
@@ -28,61 +28,19 @@ class Board
     end
   end
   
-  def invert_board_diagonal
-    n = 0
-    i = 0
-    7.times do
-      diagonal = []
-      @horizontal_board.values.reverse.each do |row|
-        diagonal << row[i]
-        i += 1
-      end
-      @diagonal_board[n] = diagonal
-      n += 1
-      i = n
-    end
-    
-    k = 0
-    i = 0
-    7.times do
-      diagonal = []
-      @horizontal_board.values.each do |row|
-        diagonal << row[i]
-        i += 1
-      end
-      @diagonal_board[n] = diagonal
-      n += 1
-      k += 1
-      i = k
-    end
-    
-    k = 4
-    i = 4
-    5.times do
-      diagonal = []
-      @horizontal_board.values.reverse.each do |row|
-        diagonal << row[i] if i >= 0
-        i -= 1
-      end
-      @diagonal_board[n] = diagonal
-      n += 1
-      k -= 1
-      i = k
-    end
-    
-    k = 4
-    i = 4
-    5.times do
-      diagonal = []
-      @horizontal_board.values.each do |row|
-        diagonal << row[i] if i >= 0
-        i -= 1
-      end
-      @diagonal_board[n] = diagonal
-      n += 1
-      k -= 1
-      i = k
-    end
+  def invert_board_diagonal(grid)
+    (0..grid.size-4).map do |i| 
+      (0..grid.size-1-i).map { |j| grid[i+j][j]}
+    end.concat((1..grid.size-3).map do |j| 
+      (0..grid.size-j).map { |i| grid[i][j+i]}
+    end)
+  end
+  
+  def import_diagonal_board
+    @diagonal_board = []
+    @diagonal_board << invert_board_diagonal(@horizontal_board.values)
+    @diagonal_board << invert_board_diagonal(@horizontal_board.values.reverse)
+    @diagonal_board.flatten!(1)
   end
   
   def print_board

@@ -13,22 +13,14 @@ class Game
     @turn = Turn.new(@board, @player1, @player2)
   end
   
-  def win?(board_orientation, player)
+  def win?(board_orientation)
     board_orientation.each do |vector|
-      player_consecutive_tokens = 0
-      vector.each do |slot|
-        if slot == player.chip
-          player_consecutive_tokens += 1
-        else
-          player_consecutive_tokens = 0
-        end
-        if player_consecutive_tokens >= 4
-          @winner = player
-          return true
-        end
-      end
+      a = vector.each_cons(4).find {|a| a.uniq.size == 1 && a.first != nil}
+      @winner = @player1 if a. == ['X', 'X', 'X', 'X']
+      @winner = @player2 if a == ['O', 'O', 'O', 'O']
+      return true unless a.nil?
     end
-    return false
+    false
   end
   
   def play
@@ -41,15 +33,15 @@ class Game
   end
   
   def game_over?(player)
-    win?(board.game_board.values, player) || 
-    win?(board.horizontal_board.values, player) || 
-    win?(board.diagonal_board.values, player) || 
+    win?(board.game_board.values) || 
+    win?(board.horizontal_board.values) || 
+    win?(board.diagonal_board) || 
     turn.draw?
   end
   
   def end_game
     if !@turn.draw?
-      puts "*~*~* #{winner.name} has won the game! *~*~*"
+      puts "*~*~* #{@winner.name} has won the game! *~*~*"
     elsif @turn.draw?
       puts "----- Tie game -----"
     end
@@ -117,7 +109,9 @@ class Game
      puts "Your chips will be X. Connect Four!"
     end
     @board.invert_board
+    @board.import_diagonal_board
     @board.print_board
     play
   end
 end
+

@@ -41,7 +41,7 @@ class Turn
   def record_move_print_board(move, player) 
     @board.game_board[move].push(player.chip)
     @board.invert_board
-    @board.invert_board_diagonal
+    @board.import_diagonal_board
     @board.print_board
   end
 

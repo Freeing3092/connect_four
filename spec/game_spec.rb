@@ -17,24 +17,49 @@ RSpec.describe Game do
   end
   
   it "#win? method to check for vertical win conditions" do
-    expect(game.win?(game.board.game_board.values, game.player1)).to eq(false)
+    expect(game.win?(game.board.game_board.values)).to eq(false)
     4.times do
       game.board.game_board['B'].push(game.player1.chip)
     end
-    expect(game.win?(game.board.game_board.values, game.player1)).to eq(true)
+    expect(game.win?(game.board.game_board.values)).to eq(true)
   end
   
   it "#win? method can check for horizontal win conditions" do
     
     game.board.invert_board
-    expect(game.win?(game.board.horizontal_board.values, game.player2)).to eq(false)
+    expect(game.win?(game.board.horizontal_board.values)).to eq(false)
     game.board.game_board['C'].push(game.player2.chip)
     game.board.game_board['D'].push(game.player2.chip)
     game.board.game_board['E'].push(game.player2.chip)
     game.board.game_board['F'].push(game.player2.chip)
     game.board.invert_board
+    expect(game.win?(game.board.horizontal_board.values)).to eq(true)
+  end
+  
+  it "#win? method can check for diagonal win conditions" do
     
-    expect(game.win?(game.board.horizontal_board.values, game.player2)).to eq(true)
+    game.board.invert_board
+    game.board.import_diagonal_board
+    expect(game.win?(game.board.diagonal_board)).to eq(false)
+    game.board.game_board['A'].push(game.player1.chip)
+    game.board.game_board['B'].push(game.player2.chip)
+    game.board.game_board['B'].push(game.player1.chip)
+    game.board.game_board['C'].push(game.player2.chip)
+    game.board.game_board['G'].push(game.player1.chip)
+    game.board.game_board['C'].push(game.player2.chip)
+    game.board.game_board['C'].push(game.player1.chip)
+    game.board.game_board['D'].push(game.player2.chip)
+    game.board.game_board['D'].push(game.player1.chip)
+    game.board.game_board['G'].push(game.player2.chip)
+    game.board.game_board['D'].push(game.player1.chip)
+    game.board.game_board['G'].push(game.player2.chip)
+    game.board.game_board['D'].push(game.player1.chip)
+    
+    game.board.invert_board
+    game.board.import_diagonal_board
+    puts '\n'
+    game.board.print_board
+    expect(game.win?(game.board.diagonal_board)).to eq(true)
   end
 
 
