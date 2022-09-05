@@ -13,22 +13,14 @@ RSpec.describe Turn do
   end
   
   it 'accepts one character that matches the column keys and upcases it' do
-    move = " "
-    expect(turn.valid_input_character?(move)).to eq false
-    move = "."
-    expect(turn.valid_input_character?(move)).to eq false
-    move = 5
-    expect(turn.valid_input_character?(move)).to eq false
-    move = "á"
-    expect(turn.valid_input_character?(move)).to eq false
-    move = "BB"
-    expect(turn.valid_input_character?(move)).to eq false
-    move = "C?"
-    expect(turn.valid_input_character?(move)).to eq false
-    move = "g"
-    expect(turn.valid_input_character?(move)).to eq true
-    move = 'D'
-    expect(turn.valid_input_character?(move)).to eq true
+    expect(turn.valid_input_character?(" ")).to eq false
+    expect(turn.valid_input_character?(".")).to eq false
+    expect(turn.valid_input_character?(5)).to eq false
+    expect(turn.valid_input_character?("á")).to eq false
+    expect(turn.valid_input_character?("BB")).to eq false
+    expect(turn.valid_input_character?("C?")).to eq false
+    expect(turn.valid_input_character?("g")).to eq true
+    expect(turn.valid_input_character?("D")).to eq true
   end
 
   it "has a method for the computer move" do

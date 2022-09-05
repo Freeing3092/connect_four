@@ -6,31 +6,11 @@ class Turn
     @player2 = player2
   end
   
-  #Method evaluates and upcases valid input; 
+  #Method takes in a player1 move and runs it through the assessment steps
 
-  def valid_input_character?(move)
-    ((move.is_a?(Integer) == false) && ((@board.game_board).has_key?(move.upcase)))
-      #****if false, return a message to player...input valid move * ******
-  end
-  
-    # this method calls for the player to make a move, evaluates the move, 
-    #and inputs valid moves onto the board
-    
   def player1_move
-    if draw? == true #end of method for immediate response to conidtion
-      return "The game is a draw!"
-    end
-
-    move =  gets.chomp.upcase
-    while valid_input_character?(move) == false
-    puts "That is an invalid input! Please select an open column between A-G."
-    move =  gets.chomp.upcase
-    end
-    while column_full?(move) == true #?????||  valid_input_character?(move) == true
-      puts "That column is full! Please select another column."
-      move =  gets.chomp.upcase # runner file... run prun
-    end
-    record_move_print_board(move, @player1) 
+    move = gets.chomp.upcase
+    is_move_invalid?(move)
   end
 
   # Method to have the computer select a random (and not full) column
@@ -38,9 +18,6 @@ class Turn
 
   def computer_move
     move = @board.game_board.keys.sample
-    if draw?
-      return "The game is a draw!"
-    end
     while column_full?(move)
       move = @board.game_board.keys.sample
     end
@@ -49,11 +26,8 @@ class Turn
   
   # Method to check if a column is full.
   
-
   def column_full?(move)
-    # require 'pry';binding.pry
     board.game_board[move].count == 6
-
   end
   
   # Method to check if the entire board is full.
@@ -69,5 +43,30 @@ class Turn
     @board.invert_board
     @board.invert_board_diagonal
     @board.print_board
+  end
+
+   #Helper Methods valid_input_character? and is_move_invalid? evaluate player input
+
+   def valid_input_character?(move)
+    ((move.is_a?(Integer) == false) && ((@board.game_board).has_key?(move.upcase)))
+  end
+    
+  def is_move_invalid?(move)
+    #if input is invalid 
+    while (valid_input_character?(move) == false) 
+      puts "That is an invalid input! Please select an open column between A-G."
+      move = gets.chomp.upcase
+    end
+    # if input valid
+    if (valid_input_character?(move)  == true ) 
+       (column_full?(move) == false)
+
+       #if input is valid check for full column, recheck input then column status; if either is true loop
+        while (valid_input_character?(move) == false ) || (column_full?(move) == true)
+          puts "That is an invalid input! Please select an open column between A-G."
+          move = gets.chomp.upcase
+      end
+    end
+    record_move_print_board(move, @player1)
   end
 end
