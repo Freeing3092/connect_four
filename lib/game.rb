@@ -14,6 +14,7 @@ class Game
   end
   
   def win?(board_orientation, player)
+    require "pry"; binding.pry
     board_orientation.each do |vector|
       player_consecutive_tokens = 0
       vector.each do |slot|
@@ -43,7 +44,7 @@ class Game
   def game_over?(player)
     win?(board.game_board.values, player) || 
     win?(board.horizontal_board.values, player) || 
-    win?(board.diagonal_board.values, player) || 
+    win?(board.diagonal_board, player) || 
     turn.draw?
   end
   
