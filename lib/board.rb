@@ -55,6 +55,7 @@ class Board
         end
       end
       puts subbed_row.join(' ')
+      
     end
   end
 
