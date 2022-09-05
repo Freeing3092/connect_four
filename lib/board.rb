@@ -4,13 +4,13 @@ class Board
               :diagonal_board
   def initialize()
     @game_board = { 
-    "A" => [],
-    "B" => [],
-    "C" => [],
-    "D" => [],
-    "E" => [],
-    "F" => [],
-    "G" => []
+    :A => [],
+    :B => [],
+    :C => [],
+    :D => [],
+    :E => [],
+    :F => [],
+    :G => []
   }
     @horizontal_board = {}
     @diagonal_board = []
@@ -60,6 +60,6 @@ class Board
   end
 
   def welcome_message
-    puts "Welcome to CONNECT FOUR!\n"
+    puts "\nWelcome to CONNECT FOUR!\nEnter p to play. Enter q to quit."
   end
 end
