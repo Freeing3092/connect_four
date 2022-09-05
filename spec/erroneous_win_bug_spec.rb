@@ -32,8 +32,8 @@ RSpec.describe Board do
     game.board.import_diagonal_board
     print "\n"
     game.board.print_board
-    expect(game.win?(game.board.game_board.values, game.player2)).to eq(false)
-    expect(game.win?(game.board.horizontal_board.values, game.player2)).to eq(false)
-    expect(game.win?(game.board.diagonal_board, game.player2)).to eq(false)
+    expect(game.win?(game.board.game_board.values)).to eq(false)
+    expect(game.win?(game.board.horizontal_board.values)).to eq(false)
+    expect(game.win?(game.board.diagonal_board)).to eq(false)
   end
 end

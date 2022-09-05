@@ -37,6 +37,7 @@ class Board
   end
   
   def import_diagonal_board
+    @diagonal_board = []
     @diagonal_board << invert_board_diagonal(@horizontal_board.values)
     @diagonal_board << invert_board_diagonal(@horizontal_board.values.reverse)
     @diagonal_board.flatten!(1)
