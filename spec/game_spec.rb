@@ -13,7 +13,7 @@ RSpec.describe Game do
   it "is initialized with 2 players and a board" do
     expect(game.player1.name).to eq("Player")
     expect(game.player2.name).to eq(:Hal)
-    # expect(game.board).to be_a Board
+    expect(game.board).to be_a Board
   end
   
   it "#win? method to check for vertical win conditions" do
