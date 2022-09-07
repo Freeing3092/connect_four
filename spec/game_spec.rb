@@ -12,14 +12,14 @@ RSpec.describe Game do
   
   it "is initialized with 2 players and a board" do
     expect(game.player1.name).to eq("Player")
-    expect(game.player2.name).to eq("Hal")
+    expect(game.player2.name).to eq(:Hal)
     expect(game.board).to be_a Board
   end
   
   it "#win? method to check for vertical win conditions" do
     expect(game.win?(game.board.game_board.values)).to eq(false)
     4.times do
-      game.board.game_board['B'].push(game.player1.chip)
+      game.board.game_board[:B].push(game.player1.chip)
     end
     expect(game.win?(game.board.game_board.values)).to eq(true)
   end
@@ -28,10 +28,10 @@ RSpec.describe Game do
     
     game.board.invert_board
     expect(game.win?(game.board.horizontal_board.values)).to eq(false)
-    game.board.game_board['C'].push(game.player2.chip)
-    game.board.game_board['D'].push(game.player2.chip)
-    game.board.game_board['E'].push(game.player2.chip)
-    game.board.game_board['F'].push(game.player2.chip)
+    game.board.game_board[:C].push(game.player2.chip)
+    game.board.game_board[:D].push(game.player2.chip)
+    game.board.game_board[:E].push(game.player2.chip)
+    game.board.game_board[:F].push(game.player2.chip)
     game.board.invert_board
     expect(game.win?(game.board.horizontal_board.values)).to eq(true)
   end
@@ -41,19 +41,19 @@ RSpec.describe Game do
     game.board.invert_board
     game.board.import_diagonal_board
     expect(game.win?(game.board.diagonal_board)).to eq(false)
-    game.board.game_board['A'].push(game.player1.chip)
-    game.board.game_board['B'].push(game.player2.chip)
-    game.board.game_board['B'].push(game.player1.chip)
-    game.board.game_board['C'].push(game.player2.chip)
-    game.board.game_board['G'].push(game.player1.chip)
-    game.board.game_board['C'].push(game.player2.chip)
-    game.board.game_board['C'].push(game.player1.chip)
-    game.board.game_board['D'].push(game.player2.chip)
-    game.board.game_board['D'].push(game.player1.chip)
-    game.board.game_board['G'].push(game.player2.chip)
-    game.board.game_board['D'].push(game.player1.chip)
-    game.board.game_board['G'].push(game.player2.chip)
-    game.board.game_board['D'].push(game.player1.chip)
+    game.board.game_board[:A].push(game.player1.chip)
+    game.board.game_board[:B].push(game.player2.chip)
+    game.board.game_board[:B].push(game.player1.chip)
+    game.board.game_board[:C].push(game.player2.chip)
+    game.board.game_board[:G].push(game.player1.chip)
+    game.board.game_board[:C].push(game.player2.chip)
+    game.board.game_board[:C].push(game.player1.chip)
+    game.board.game_board[:D].push(game.player2.chip)
+    game.board.game_board[:D].push(game.player1.chip)
+    game.board.game_board[:G].push(game.player2.chip)
+    game.board.game_board[:D].push(game.player1.chip)
+    game.board.game_board[:G].push(game.player2.chip)
+    game.board.game_board[:D].push(game.player1.chip)
     
     game.board.invert_board
     game.board.import_diagonal_board

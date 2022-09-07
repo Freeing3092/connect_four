@@ -9,7 +9,7 @@ class Turn
   #Method takes in a player1 move and runs it through the assessment steps
 
   def player1_move
-    move = gets.chomp.upcase
+    move = gets.chomp.upcase.to_sym
     is_move_invalid?(move)
   end
 
@@ -55,7 +55,7 @@ class Turn
     #if input is invalid 
     while (valid_input_character?(move) == false) 
       puts "That is an invalid input! Please select an open column between A-G."
-      move = gets.chomp.upcase
+      move = gets.chomp.upcase.to_sym
     end
     # if input valid
     if (valid_input_character?(move)  == true ) 
@@ -63,8 +63,8 @@ class Turn
 
        #if input is valid check for full column, recheck input then column status; if either is true loop
         while (valid_input_character?(move) == false ) || (column_full?(move) == true)
-          puts "That is an invalid input! Please select an open column between A-G."
-          move = gets.chomp.upcase
+          puts "Invalid input! Please select an open column between A-G."
+          move = gets.chomp.upcase.to_sym
       end
     end
     record_move_print_board(move, @player1)
