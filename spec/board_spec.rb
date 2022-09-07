@@ -72,8 +72,4 @@ RSpec.describe Board do
     expect(board.diagonal_board[9]).to eq([:X, :X, :O, :O, nil, nil])
     expect(board.diagonal_board[11]).to eq([:O, :O, nil, nil])
   end
-  
-  it'should put a welcome message' do
-    expect { board.welcome_message }.to output("\nWelcome to CONNECT FOUR!\nEnter p to play. Enter q to quit.\n").to_stdout
-  end
 end

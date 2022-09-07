@@ -13,7 +13,7 @@ RSpec.describe Game do
   it "is initialized with 2 players and a board" do
     expect(game.player1.name).to eq("Player")
     expect(game.player2.name).to eq(:Hal)
-    expect(game.board).to be_a Board
+    # expect(game.board).to be_a Board
   end
   
   it "#win? method to check for vertical win conditions" do
@@ -62,34 +62,7 @@ RSpec.describe Game do
     expect(game.win?(game.board.diagonal_board)).to eq(true)
   end
 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  it'should put a welcome message' do
+    expect { game.welcome_message }.to output("\nWelcome to CONNECT FOUR!\nEnter p to play. Enter q to quit.\n").to_stdout
+  end
 end
