@@ -12,7 +12,7 @@ class Game
     @winner = winner
     @turn = Turn.new(@board, @player1, @player2)
   end
-  
+
   def win?(board_orientation)
     board_orientation.each do |vector|
       a = vector.each_cons(4).find {|a| a.uniq.size == 1 && a.first != nil}
@@ -46,30 +46,34 @@ class Game
     elsif @turn.draw?
       puts "----- Tie game -----"
     end
+    @board = Board.new
+    @turn = Turn.new(@board, @player1, @player2)
   end
 
   def start
     @board.welcome_message
-
-    # puts "Enter p to play. Enter q to quit.\n"
-    user_input = gets.chomp.to_sym
+    user_input = gets.chomp
 
     if (user_input.is_a?(Integer) == false)
-      while (user_input.upcase != :Q) && (user_input.upcase != :P)
+      while (user_input.upcase != "Q") && (user_input.upcase != "P")
         puts "Invalid input.\nEnter p to play. Enter q to quit."
-        user_input = gets.chomp.to_sym 
+        user_input = gets.chomp
       end
 
-      if user_input.upcase == :Q 
+      if user_input.upcase == "Q" 
         return puts "Thank you for checking out CONNECT FOUR!"
       end
     end
+
+    test_1
+  end
+
+  def test_1
     puts "\nPlayer1 is represented by 'X' on the board!\nSelect a column between A-G."
     @board.invert_board
     @board.import_diagonal_board
     @board.print_board
     play
   end
-
 end
 
