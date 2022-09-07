@@ -16,6 +16,8 @@ class Board
     @diagonal_board = []
   end
 
+  # Invert board orientation to horizontal arrays and store
+  # in horizontal_board attribute.
   def invert_board
     column_index = 5
     6.times do
@@ -28,6 +30,7 @@ class Board
     end
   end
   
+  # Invert board orientation to diagonal arrays
   def invert_board_diagonal(grid)
     (0..grid.size-4).map do |i| 
       (0..grid.size-1-i).map { |j| grid[i+j][j]}
@@ -36,6 +39,7 @@ class Board
     end)
   end
   
+  # Save diagonal and antediagonal arrays in diagonal_board attribute.
   def import_diagonal_board
     @diagonal_board = []
     @diagonal_board << invert_board_diagonal(@horizontal_board.values)
@@ -43,6 +47,7 @@ class Board
     @diagonal_board.flatten!(1)
   end
   
+  # Output board state
   def print_board
     puts game_board.keys.join(' ')
     @horizontal_board.values.each do |row|
