@@ -40,6 +40,7 @@ class Game
     turn.draw?
   end
   
+  #Method prints a winner or draw message, then prints a new board for another game (if elected)
   def end_game
     if !@turn.draw?
       puts "*~*~* #{@winner.name} has won the game! *~*~*"
@@ -50,10 +51,11 @@ class Game
     @turn = Turn.new(@board, @player1, @player2)
   end
 
+  #Method prints the welcome menu, acts on user's menue choice, prints fresh board if playing 
   def start
-    @board.welcome_message
-    user_input = gets.chomp
+    welcome_message
 
+    user_input = gets.chomp
     if (user_input.is_a?(Integer) == false)
       while (user_input.upcase != "Q") && (user_input.upcase != "P")
         puts "Invalid input.\nEnter p to play. Enter q to quit."
@@ -65,15 +67,20 @@ class Game
       end
     end
 
-    test_1
+    print_new_board_to_play_game
   end
 
-  def test_1
+  #Method informs "X" represents player1 on board, prints board and enters play method
+  def print_new_board_to_play_game
     puts "\nPlayer1 is represented by 'X' on the board!\nSelect a column between A-G."
     @board.invert_board
     @board.import_diagonal_board
     @board.print_board
     play
+  end
+
+  def welcome_message
+    puts "\nWelcome to CONNECT FOUR!\nEnter p to play. Enter q to quit."
   end
 end
 

@@ -61,6 +61,10 @@ RSpec.describe Game do
     game.board.print_board
     expect(game.win?(game.board.diagonal_board)).to eq(true)
   end
+
+  it'should put a welcome message' do
+    expect { game.welcome_message }.to output("\nWelcome to CONNECT FOUR!\nEnter p to play. Enter q to quit.\n").to_stdout
+  end
   
   it "doesn't have an erroneous win conidtion" do
     game.board.game_board[:A].push(:X)

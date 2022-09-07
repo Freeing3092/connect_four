@@ -63,8 +63,4 @@ class Board
       
     end
   end
-
-  def welcome_message
-    puts "\nWelcome to CONNECT FOUR!\nEnter p to play. Enter q to quit."
-  end
 end
